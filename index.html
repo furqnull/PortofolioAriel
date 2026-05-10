@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariel Furqanul Khaq | Data Science Portfolio</title>
+    <meta name="description" content="Portofolio Ariel Furqanul Khaq - Mahasiswa S1 Data Science Telkom University. Spesialisasi dalam Machine Learning, Computer Vision, dan Data Engineering.">
+
+    <meta property="og:title" content="Ariel Furqanul Khaq | Data Science Portfolio">
+    <meta property="og:description" content="Mahasiswa S1 Data Science Telkom University. Machine Learning, Computer Vision, Data Engineering.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="profile-photo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ariel Furqanul Khaq | Data Science Portfolio">
+    <meta name="theme-color" content="#050505">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ariel Furqanul Khaq",
+      "jobTitle": "Data Science Student",
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "Telkom University" },
+      "knowsAbout": ["Data Science", "Machine Learning", "Computer Vision", "Python", "Data Engineering"],
+      "email": "furqnul@gmail.com",
+      "sameAs": ["https://www.linkedin.com/in/ariel-furqanul-khaq-6b68a530b"]
+    }
+    </script>
+
+    <link rel="icon" type="image/png" href="profile-photo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        background: '#050505',
+                        surface: '#0A0A0A',
+                        primary: '#3B82F6',
+                        secondary: '#00F0FF',
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'loading': 'loading 1.5s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
+                        loading: { '0%': { width: '0%', transform: 'translateX(-100%)' }, '50%': { width: '100%', transform: 'translateX(0%)' }, '100%': { width: '100%', transform: 'translateX(100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
+        @media (min-width: 768px) { body { cursor: none; } }
+
+        /* ─── PRELOADER ─── */
+        #preloader { position: fixed; inset: 0; background: #050505; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s ease; }
+
+        /* ─── NOISE OVERLAY ─── */
+        .bg-noise { position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+
+        /* ─── CUSTOM CURSOR ─── */
+        .cursor-dot { width: 8px; height: 8px; background: #3B82F6; position: fixed; border-radius: 50%; z-index: 9999; pointer-events: none; transform: translate(-50%, -50%); will-change: left, top; transition: transform 0.15s ease, background 0.2s ease; }
+        .cursor-outline { width: 40px; height: 40px; border: 1.5px solid rgba(59, 130, 246, 0.5); position: fixed; border-radius: 50%; z-index: 9999; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, border-radius 0.25s ease; will-change: left, top; }
+        .cursor-outline.hovered { width: 64px; height: 64px; border-color: rgba(59, 130, 246, 0.9); background: rgba(59, 130, 246, 0.06); }
+        .cursor-outline.magnetic { width: 56px; height: 56px; border-color: #3B82F6; background: rgba(59, 130, 246, 0.1); border-radius: 14px; }
+        .cursor-dot.clicking { transform: translate(-50%, -50%) scale(0.5); }
+        .cursor-outline.clicking { transform: translate(-50%, -50%) scale(0.85); }
+
+        /* ─── GLASS PANEL ─── */
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+
+        /* ─── 3D TILT CARD ─── */
+        .bento-card {
+            transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), border-color 0.4s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            will-change: transform;
+        }
+        .bento-card:hover { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(59,130,246,0.1); }
+        /* Tilt is applied via JS inline style */
+
+        /* ─── PARALLAX BLOBS ─── */
+        .parallax-blob { will-change: transform; transition: transform 0.08s linear; }
+
+        /* ─── STROKE TEXT ─── */
+        .stroke-text { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15); color: transparent; }
+
+        /* ─── TIMELINE ─── */
+        .timeline-line::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: linear-gradient(to bottom, #3B82F6, transparent); }
+
+        /* ─── MODAL ─── */
+        #projectModal.hidden { pointer-events: none; opacity: 0; }
+        #projectModal:not(.hidden) { pointer-events: auto; opacity: 1; }
+        #projectModal { transition: opacity 0.3s ease; }
+
+        /* ─── SCROLL REVEAL ─── */
+        .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+
+        /* ─── ACTIVE NAV ─── */
+        .nav-link { transition: color 0.2s; }
+        .nav-link.active { color: #ffffff; }
+
+        /* ─── MAGNETIC BUTTON ─── */
+        .magnetic-btn { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s, color 0.3s; position: relative; }
+
+        /* ─── HERO HEADING TEXT REVEAL ─── */
+        .text-reveal-wrap { overflow: hidden; display: inline-block; }
+        .text-reveal-inner { display: inline-block; transform: translateY(110%); transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1); }
+        .text-reveal-inner.revealed { transform: translateY(0); }
+
+        /* ─── TEXT SCRAMBLE ─── */
+        .scramble-target { display: inline; }
+
+        /* ─── SECTION HEADING CLIP REVEAL ─── */
+        .clip-reveal { clip-path: inset(0 100% 0 0); transition: clip-path 0.9s cubic-bezier(0.76, 0, 0.24, 1); }
+        .clip-reveal.visible { clip-path: inset(0 0% 0 0); }
+
+        /* ─── FLOATING PREVIEW IMAGE ─── */
+        #project-preview {
+            position: fixed;
+            pointer-events: none;
+            z-index: 200;
+            opacity: 0;
+            transform: rotate(-3deg) scale(0.85);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 200px;
+            height: 130px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #0F0F0F;
+        }
+        #project-preview.visible {
+            opacity: 1;
+            transform: rotate(-3deg) scale(1);
+        }
+        #project-preview img { width: 100%; height: 100%; object-fit: cover; }
+        #project-preview .preview-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 8px 10px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            font-size: 11px; color: #fff; font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── GPA COUNTER ─── */
+        .gpa-counter { font-variant-numeric: tabular-nums; }
+
+        /* ─── HERO PROFILE GLOW ─── */
+        .profile-glow { box-shadow: 0 0 0 2px rgba(59,130,246,0.3), 0 0 30px rgba(59,130,246,0.25); transition: box-shadow 0.4s ease; }
+        .profile-glow:hover { box-shadow: 0 0 0 3px rgba(59,130,246,0.6), 0 0 50px rgba(59,130,246,0.4); }
+
+        /* ─── PROJECT CARD HOVER GLOW ─── */
+        .project-card { position: relative; }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            opacity: 0;
+            background: radial-gradient(circle at var(--mouse-x-local, 50%) var(--mouse-y-local, 50%), rgba(59,130,246,0.12), transparent 70%);
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .project-card:hover::after { opacity: 1; }
+
+        /* ─── SKILL TAG HOVER ─── */
+        .skill-tag { transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s; }
+        .skill-tag:hover { background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.4); color: #fff; transform: translateY(-2px); }
+
+        /* ─── COMPETITION CARD ─── */
+        .comp-card { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s; }
+        .comp-card:hover { transform: translateY(-6px) scale(1.02); border-color: rgba(59,130,246,0.5); box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 20px rgba(59,130,246,0.1); }
+
+        /* ─── CONTACT CARD GLOW ─── */
+        .contact-btn { position: relative; overflow: hidden; transition: transform 0.3s ease; }
+        .contact-btn::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; background: linear-gradient(135deg, #3B82F6, #00F0FF); opacity: 0; transition: opacity 0.3s; z-index: -1; }
+        .contact-btn:hover::before { opacity: 0.15; }
+        .contact-btn:hover { transform: translateY(-3px); }
+
+        /* ─── LOADING ANIM ─── */
+        @keyframes loading { 0%{width:0%;transform:translateX(-100%)}50%{width:100%;transform:translateX(0%)}100%{width:100%;transform:translateX(100%)} }
+        .animate-loading { animation: loading 1.5s ease-in-out infinite; }
+
+        /* ─── CONTACT LINK CARDS ─── */
+        .contact-link-card {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 24px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px); text-decoration: none; color: #fff;
+            transition: border-color 0.3s, background 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .contact-link-card::before {
+            content: ''; position: absolute; inset: 0; border-radius: inherit;
+            background: linear-gradient(135deg, rgba(var(--brand-rgb,59,130,246),0.1), transparent 60%);
+            opacity: 0; transition: opacity 0.35s;
+        }
+        .contact-link-card:hover { border-color: rgba(var(--brand-rgb,59,130,246),0.45); box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 24px rgba(var(--brand-rgb,59,130,246),0.12); }
+        .contact-link-card:hover::before { opacity: 1; }
+
+        .contact-icon-wrap {
+            width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+            background: rgba(var(--brand-rgb,59,130,246),0.1);
+            border: 1px solid rgba(var(--brand-rgb,59,130,246),0.25);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.3s, box-shadow 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+            position: relative;
+        }
+        .contact-link-card:hover .contact-icon-wrap {
+            background: rgba(var(--brand-rgb,59,130,246),0.18);
+            box-shadow: 0 0 0 3px rgba(var(--brand-rgb,59,130,246),0.25), 0 0 20px rgba(var(--brand-rgb,59,130,246),0.15);
+            transform: scale(1.1) rotate(-4deg);
+        }
+        .contact-icon-wrap::after {
+            content: ''; position: absolute; inset: -5px; border-radius: 19px;
+            border: 1.5px solid rgba(var(--brand-rgb,59,130,246),0.5);
+            opacity: 0; transform: scale(0.8); transition: opacity 0.3s, transform 0.3s;
+        }
+        .contact-link-card:hover .contact-icon-wrap::after { opacity: 1; transform: scale(1); }
+
+        .contact-link-body { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+        .contact-link-label { font-size: 11px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+        .contact-link-value { font-size: 16px; font-weight: 600; color: #fff; transition: color 0.2s; }
+        .contact-link-card:hover .contact-link-value { color: var(--brand-hex, #3B82F6); }
+
+        .contact-link-arrow {
+            color: rgba(255,255,255,0.18); flex-shrink: 0;
+            transition: color 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .contact-link-card:hover .contact-link-arrow { color: var(--brand-hex,#3B82F6); transform: translate(3px,-3px); }
+
+        /* ─── NAV scroll shrink ─── */
+        #main-nav { transition: padding 0.3s, background 0.3s; }
+        #main-nav.scrolled { background: rgba(5,5,5,0.92) !important; backdrop-filter: blur(24px) !important; padding-top: 10px !important; padding-bottom: 10px !important; }
+
+        /* ─── STATUS PING ─── */
+        @keyframes status-ping { 0%{transform:scale(1);opacity:0.8} 70%{transform:scale(2.2);opacity:0} 100%{transform:scale(2.2);opacity:0} }
+        .status-ping { animation: status-ping 2s cubic-bezier(0,0,0.2,1) infinite; }
+
+        /* ─── COPY TOAST ─── */
+        #copy-toast.show { opacity: 1 !important; transform: translateX(-50%) translateY(0) !important; }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-primary selection:text-white">
+
+    <!-- ── PRELOADER ── -->
+    <div id="preloader" role="status" aria-label="Memuat halaman">
+        <div class="text-center">
+            <h1 class="font-display font-bold text-4xl text-white mb-4 animate-pulse">
+                Furqnul<span class="text-primary">.DataScience</span>
+            </h1>
+            <div class="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-primary animate-loading"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── OVERLAYS ── -->
+    <div class="bg-noise" aria-hidden="true"></div>
+    <div class="cursor-dot hidden md:block" aria-hidden="true"></div>
+    <div class="cursor-outline hidden md:block" aria-hidden="true"></div>
+
+    <!-- ── PROJECT HOVER PREVIEW ── -->
+    <div id="project-preview" aria-hidden="true">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#111;">
+            <i class="fas fa-chart-line" style="font-size:2rem;color:#3B82F6;opacity:0.5;"></i>
+        </div>
+        <div class="preview-label" id="preview-label">Project</div>
+    </div>
+
+    <!-- ── NAV DESKTOP ── -->
+    <nav id="main-nav" class="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-5xl justify-between items-center glass-panel rounded-full px-6 py-4">
+        <a href="#home" class="font-display font-bold text-xl tracking-tighter hover:text-primary transition-colors">Furqnul<span class="text-primary">.DataScience</span></a>
+        <div class="flex space-x-8 text-sm font-medium text-gray-400">
+            <a href="#about" class="nav-link hover:text-white">About</a>
+            <a href="#experience" class="nav-link hover:text-white">Experience</a>
+            <a href="#projects" class="nav-link hover:text-white">Projects</a>
+            <a href="#competitions" class="nav-link hover:text-white">Competitions</a>
+        </div>
+        <a href="#contact" class="magnetic-btn px-5 py-2 bg-white text-black rounded-full text-sm font-bold hover:bg-primary hover:text-white">Let's Talk</a>
+    </nav>
+
+    <!-- ── NAV MOBILE ── -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm md:hidden">
+        <div class="glass-panel rounded-2xl px-6 py-3 flex justify-between items-center shadow-2xl border border-white/20 bg-black/80 backdrop-blur-xl">
+            <a href="#home" class="text-gray-400 hover:text-primary flex flex-col items-center gap-1"><i class="fas fa-home text-xl"></i></a>
+            <a href="#about" class="text-gray-400 hover:text-primary flex flex-col items-center gap-1"><i class="fas fa-user text-xl"></i></a>
+            <a href="#projects" class="bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center -mt-8 shadow-lg border-4 border-black hover:scale-110 transition-transform"><i class="fas fa-code"></i></a>
+            <a href="#experience" class="text-gray-400 hover:text-primary flex flex-col items-center gap-1"><i class="fas fa-briefcase text-xl"></i></a>
+            <a href="#contact" class="text-gray-400 hover:text-primary flex flex-col items-center gap-1"><i class="fas fa-paper-plane text-xl"></i></a>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section id="home" class="relative min-h-screen flex flex-col justify-center px-4 pt-20 pb-20 overflow-hidden">
+
+        <!-- Parallax Blobs -->
+        <div id="blob1" class="parallax-blob absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full blur-[120px]" data-speed-x="0.04" data-speed-y="0.03" aria-hidden="true"></div>
+        <div id="blob2" class="parallax-blob absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]" data-speed-x="-0.03" data-speed-y="-0.04" aria-hidden="true"></div>
+        <div id="blob3" class="parallax-blob absolute top-[40%] left-[40%] w-[300px] h-[300px] bg-primary/5 rounded-full blur-[80px]" data-speed-x="0.06" data-speed-y="-0.05" aria-hidden="true"></div>
+
+        <div class="max-w-7xl mx-auto w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div class="lg:col-span-8 flex flex-col justify-center space-y-8">
+
+                <!-- Profile Photo with glow -->
+                <div class="flex items-center gap-6">
+                    <div class="relative w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden profile-glow group">
+                        <img src="profile-photo.png" alt="Ariel Furqanul Khaq" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" loading="eager" decoding="async">
+                    </div>
+                    <div>
+                        <div class="text-xs font-mono text-primary tracking-widest mb-1 flex items-center gap-2">
+                        <span class="relative flex h-2 w-2">
+                            <span class="status-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        AVAILABLE FOR WORK
+                    </div>
+                        <div class="text-sm text-gray-400">Bandung, Indonesia</div>
+                    </div>
+                </div>
+
+                <!-- Hero Heading — text reveal on load -->
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-bold leading-[0.9] tracking-tight" id="hero-heading">
+                    <span class="text-reveal-wrap"><span class="text-reveal-inner">DATA </span></span>
+                    <span class="text-reveal-wrap"><span class="text-reveal-inner text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">SCIENCE</span></span>
+                    <br>
+                    <span class="text-reveal-wrap"><span class="text-reveal-inner">& </span></span>
+                    <span class="text-reveal-wrap"><span class="text-reveal-inner italic font-light text-primary">DATA</span></span>
+                    <span class="text-reveal-wrap"><span class="text-reveal-inner"> ENGINEERING.</span></span>
+                </h1>
+
+                <!-- Subtitle with scramble effect -->
+                <p class="text-xl text-gray-400 max-w-2xl font-light leading-relaxed">
+                    Saya <strong class="text-white font-medium">Ariel Furqanul Khaq</strong>.
+                    <span id="scramble-subtitle" class="scramble-target">Mahasiswa S1 Data Science tingkat tiga yang antusias dengan Sains Data, Machine Learning, dan Computer Vision.</span>
+                </p>
+
+                <!-- CTA Buttons — magnetic -->
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="magnetic-btn group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden inline-flex items-center gap-2">
+                        <span class="relative z-10 group-hover:text-white transition-colors duration-300">Lihat Project</span>
+                        <i class="fas fa-arrow-right relative z-10 group-hover:text-white transition-colors duration-300 text-sm"></i>
+                        <div class="absolute inset-0 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 ease-out"></div>
+                    </a>
+                    <a href="https://wa.me/6287758641541" target="_blank" rel="noopener noreferrer" class="magnetic-btn px-8 py-4 border border-white/20 rounded-full font-medium hover:border-primary/60 transition-colors inline-flex items-center gap-2 hover:bg-white/5">
+                        <i class="fas fa-eye text-primary"></i> <span>Hubungi Saya</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bento Cards -->
+            <div class="lg:col-span-4 grid grid-cols-1 gap-6 h-full content-center">
+
+                <!-- GPA Card -->
+                <div class="glass-panel p-8 rounded-3xl bento-card relative overflow-hidden group reveal" id="gpa-card">
+                    <div class="absolute top-0 right-0 p-6 opacity-20 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                        <i class="fas fa-university text-4xl text-primary"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-5xl font-display font-bold mb-1 gpa-counter" id="gpa-display">0.00</h3>
+                        <p class="text-sm font-mono text-gray-400">GPA / 4.00</p>
+                    </div>
+                    <div class="mt-6">
+                        <span class="px-3 py-1 bg-white/5 rounded text-xs text-gray-300 border border-white/5">Telkom University</span>
+                    </div>
+                    <!-- Animated progress bar -->
+                    <div class="mt-4 h-1 bg-white/5 rounded-full overflow-hidden">
+                        <div id="gpa-bar" class="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width:0%;transition:width 1.6s cubic-bezier(0.4,0,0.2,1);"></div>
+                    </div>
+                </div>
+
+                <!-- Achievement Card -->
+                <div class="glass-panel p-8 rounded-3xl bento-card bg-gradient-to-br from-white/5 to-transparent reveal reveal-d1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-medal text-yellow-500" aria-hidden="true"></i>
+                        <span class="text-sm font-bold text-yellow-500">COMPETITIONS</span>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold mb-2">TOP 6 Ara ITS</h3>
+                    <p class="text-sm text-gray-400">Data Mining Computer Vision</p>
+                    <div class="mt-4 flex items-center gap-2 text-xs text-gray-600">
+                        <span class="w-2 h-2 rounded-full bg-yellow-500 inline-block"></span>
+                        <span>+ 2 Kompetisi lainnya</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marquee -->
+        <div class="absolute bottom-10 left-0 w-full overflow-hidden pointer-events-none opacity-20" aria-hidden="true">
+            <div class="whitespace-nowrap animate-marquee flex gap-8">
+                <span class="font-display text-8xl font-bold stroke-text">PYTHON JAVA MySQL C++ GO FIGMA NLP COMPUTERVISION</span>
+                <span class="font-display text-8xl font-bold stroke-text">PYTHON JAVA MySQL C++ GO FIGMA NLP COMPUTERVISION</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section id="about" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold mb-8 reveal">Tentang Saya</h2>
+                    <div class="space-y-6 text-lg text-gray-400 font-light leading-relaxed reveal reveal-d1">
+                        <p>Memiliki pengalaman praktis dalam pengembangan <span class="text-white">model prediktif dan manajemen basis data</span>. Aktif memimpin divisi kreatif dan media di berbagai organisasi kemahasiswaan.</p>
+                        <p>Terbuka untuk peluang kerja yang dapat mengembangkan kemampuan analitis maupun kreatif.</p>
+                    </div>
+                </div>
+                <div class="glass-panel p-8 rounded-3xl reveal reveal-d2 bento-card">
+                    <h3 class="text-2xl font-display font-bold mb-6">Keterampilan</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xs font-mono text-primary mb-3 tracking-widest">LANGUAGES</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">Python</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">Java</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">MySQL</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">C++</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">GO</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-mono text-primary mb-3 tracking-widest">DATA SCIENCE & ML</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">Time Series Forecasting</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">Computer Vision</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">NLP</span>
+                                <span class="skill-tag px-3 py-1 bg-white/5 border border-white/10 rounded text-sm cursor-default">Data Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         EXPERIENCE SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section id="experience" class="py-24 bg-background">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-16 reveal">Pengalaman Organisasi</h2>
+            <div class="relative timeline-line pl-8 md:pl-0 space-y-12">
+
+                <div class="relative md:flex justify-between items-center group reveal">
+                    <div class="hidden md:block w-[45%] text-right pr-8">
+                        <span class="text-primary font-mono text-sm">2026 - Sekarang</span>
+                        <h3 class="text-xl font-bold">Ketua Bidang Media & Informasi</h3>
+                        <p class="text-gray-400 text-sm">KBMS Telkom University</p>
+                    </div>
+                    <div class="absolute left-[-5px] md:left-1/2 md:-ml-[5px] w-3 h-3 bg-primary rounded-full border-4 border-black z-10" aria-hidden="true"></div>
+                    <div class="md:w-[45%] md:pl-8 pl-8">
+                        <div class="glass-panel p-6 rounded-xl bento-card">
+                            <h3 class="md:hidden text-xl font-bold">KBMS Telkom University</h3>
+                            <p class="text-sm text-gray-300 mt-2">Mengarahkan strategi komunikasi dan publikasi digital organisasi untuk meningkatkan jangkauan informasi dan memperkuat branding lembaga.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative md:flex justify-between items-center group reveal reveal-d1">
+                    <div class="md:w-[45%] text-right md:pr-8 md:order-1 pl-8 md:pl-0">
+                        <div class="glass-panel p-6 rounded-xl bento-card">
+                            <h3 class="md:hidden text-xl font-bold">Leviathan Data Science</h3>
+                            <p class="text-sm text-gray-300 mt-2">Mengelola seluruh proses produksi aset visual dan menjaga konsistensi identitas kreatif komunitas agar selaras dengan visi bidang data science.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-[-5px] md:left-1/2 md:-ml-[5px] w-3 h-3 bg-gray-600 group-hover:bg-primary rounded-full border-4 border-black z-10 transition-colors" aria-hidden="true"></div>
+                    <div class="hidden md:block w-[45%] pl-8 md:order-2">
+                        <span class="text-primary font-mono text-sm">2025 - Sekarang</span>
+                        <h3 class="text-xl font-bold">Koordinator Creative</h3>
+                        <p class="text-gray-400 text-sm">Leviathan Data Science</p>
+                    </div>
+                </div>
+
+                <div class="relative md:flex justify-between items-center group reveal reveal-d2">
+                    <div class="hidden md:block w-[45%] text-right pr-8">
+                        <span class="text-primary font-mono text-sm">2025</span>
+                        <h3 class="text-xl font-bold">Staff Creative, Content & Media</h3>
+                        <p class="text-gray-400 text-sm">Intelecta Cup</p>
+                    </div>
+                    <div class="absolute left-[-5px] md:left-1/2 md:-ml-[5px] w-3 h-3 bg-gray-600 group-hover:bg-primary rounded-full border-4 border-black z-10 transition-colors" aria-hidden="true"></div>
+                    <div class="md:w-[45%] md:pl-8 pl-8">
+                        <div class="glass-panel p-6 rounded-xl bento-card">
+                            <h3 class="md:hidden text-xl font-bold">Intelecta Cup</h3>
+                            <p class="text-sm text-gray-300 mt-2">Memproduksi konten multimedia dan materi promosi kreatif untuk mendukung keberhasilan publikasi dan dokumentasi rangkaian acara.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         PROJECTS SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section id="projects" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-12 reveal">Proyek Pilihan</h2>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="glass-panel rounded-3xl overflow-hidden bento-card project-card group h-[450px] flex flex-col reveal"
+                    onclick="openModal(this)"
+                    data-title="Analisis Telco Customer Churn"
+                    data-desc="Pengolahan Big Data dan pembuatan model ensemble menggunakan Google Colab dan GCP BigQuery. Pipeline end-to-end mulai dari data ingestion hingga model deployment."
+                    data-tech="Python, GCP, BigQuery, Ensemble"
+                    data-image=""
+                    data-repo="#"
+                    data-category="Data Science"
+                    data-icon="fa-database">
+                    <div class="h-1/2 bg-gradient-to-br from-blue-950 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 60% 40%, #3B82F6, transparent 60%)"></div>
+                        <i class="fas fa-database text-6xl text-primary opacity-60 relative z-10" aria-hidden="true"></i>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-[#0A0A0A]">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Telco Customer Churn</h3>
+                            <p class="text-sm text-gray-400">Model Ensemble & Big Data</p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-mono">GCP</span>
+                            <i class="fas fa-arrow-up-right-from-square text-gray-500 group-hover:text-primary transition-colors" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl overflow-hidden bento-card project-card group h-[450px] flex flex-col reveal reveal-d1"
+                    onclick="openModal(this)"
+                    data-title="Time Series Forecasting Volume Sampah"
+                    data-desc="Proyek Capstone yang berfokus pada prediksi volume sampah di Kota Bandung dengan menerapkan pemodelan ARIMA dan SARIMA. Validasi model dengan metrik MAE, RMSE, dan MAPE."
+                    data-tech="Python, ARIMA, SARIMA"
+                    data-image=""
+                    data-repo="#"
+                    data-category="Time Series"
+                    data-icon="fa-chart-line">
+                    <div class="h-1/2 bg-gradient-to-br from-cyan-950 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 40% 60%, #00F0FF, transparent 60%)"></div>
+                        <i class="fas fa-chart-line text-6xl text-secondary opacity-60 relative z-10" aria-hidden="true"></i>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-[#0A0A0A]">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Volume Sampah Forecasting</h3>
+                            <p class="text-sm text-gray-400">ARIMA & SARIMA Modeling</p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-mono">PYTHON</span>
+                            <i class="fas fa-arrow-up-right-from-square text-gray-500 group-hover:text-primary transition-colors" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-3xl overflow-hidden bento-card project-card group h-[450px] flex flex-col reveal reveal-d2"
+                    onclick="openModal(this)"
+                    data-title="Teralis Reservation System"
+                    data-desc="Pengembangan perangkat lunak sistem reservasi berbasis Java OOP dengan implementasi arsitektur MVC. Mencakup manajemen booking, notifikasi, dan laporan otomatis."
+                    data-tech="Java, OOP, MVC"
+                    data-image=""
+                    data-repo="#"
+                    data-category="Software Engineering"
+                    data-icon="fa-code">
+                    <div class="h-1/2 bg-gradient-to-br from-violet-950 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 50% 50%, #7C3AED, transparent 60%)"></div>
+                        <i class="fas fa-code text-6xl text-violet-400 opacity-60 relative z-10" aria-hidden="true"></i>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-[#0A0A0A]">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Teralis Reservation</h3>
+                            <p class="text-sm text-gray-400">Java OOP & MVC Architecture</p>
+                        </div>
+                        <div class="border-t border-white/5 pt-4 flex justify-between items-center">
+                            <span class="text-xs text-gray-500 font-mono">JAVA</span>
+                            <i class="fas fa-arrow-up-right-from-square text-gray-500 group-hover:text-primary transition-colors" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         COMPETITIONS SECTION
+    ══════════════════════════════════════════════════════ -->
+    <section id="competitions" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-12 reveal">Kompetisi</h2>
+            <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500 comp-card reveal">
+                    <i class="fas fa-trophy text-2xl text-blue-500 mb-4" aria-hidden="true"></i>
+                    <h3 class="font-bold text-lg">Ara ITS</h3>
+                    <div class="inline-block mt-1 mb-2 px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">TOP 6</div>
+                    <p class="text-xs text-gray-400">Data Mining Computer Vision</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500 comp-card reveal reveal-d1">
+                    <i class="fas fa-award text-2xl text-blue-500 mb-4" aria-hidden="true"></i>
+                    <h3 class="font-bold text-lg">Adikara 2025</h3>
+                    <div class="inline-block mt-1 mb-2 px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20">TOP 25</div>
+                    <p class="text-xs text-gray-400">Data Mining</p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500 comp-card reveal reveal-d2">
+                    <i class="fas fa-medal text-2xl text-blue-500 mb-4" aria-hidden="true"></i>
+                    <h3 class="font-bold text-lg">PKM-KI</h3>
+                    <div class="inline-block mt-1 mb-2 px-2 py-0.5 rounded text-xs font-mono bg-white/5 text-gray-400 border border-white/10">PESERTA</div>
+                    <p class="text-xs text-gray-400">Program Kreativitas Mahasiswa</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTACT SECTION — redesigned with animated brand logos
+    ══════════════════════════════════════════════════════ -->
+    <section id="contact" class="py-32 bg-surface pb-40 relative overflow-hidden">
+
+        <!-- Ambient glow behind card -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/8 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-3xl mx-auto px-4 relative z-10">
+
+            <!-- Eyebrow -->
+            <div class="flex items-center justify-center gap-3 mb-6 reveal">
+                <span class="h-px w-12 bg-primary/40"></span>
+                <span class="text-xs font-mono text-primary tracking-[0.2em] uppercase">Get In Touch</span>
+                <span class="h-px w-12 bg-primary/40"></span>
+            </div>
+
+            <!-- Heading -->
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-center mb-4 reveal reveal-d1">Mari Berkolaborasi</h2>
+            <p class="text-gray-400 text-center mb-14 max-w-md mx-auto reveal reveal-d2">Tertarik dengan Sains Data atau pengerjaan kreatif? Hubungi saya kapan saja.</p>
+
+            <!-- Contact Buttons -->
+            <div class="flex flex-col gap-4 reveal reveal-d3" id="contact-buttons">
+
+                <!-- Email -->
+                <a href="mailto:furqnul@gmail.com" class="contact-link-card group magnetic-btn" data-platform="email" style="--brand-rgb:234,67,53;--brand-hex:#EA4335">
+                    <div class="contact-icon-wrap" style="--brand-rgb:234,67,53;--brand-hex:#EA4335">
+                        <!-- Gmail SVG logo -->
+                        <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M44 8H4C1.8 8 0 9.8 0 12v24c0 2.2 1.8 4 4 4h40c2.2 0 4-1.8 4-4V12c0-2.2-1.8-4-4-4z" fill="#fff" fill-opacity="0.05"/>
+                            <path d="M4 8l20 14L44 8" stroke="#EA4335" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                            <path d="M0 12l20 14 4-2.8L44 12" stroke="#EA4335" stroke-width="0" fill="none"/>
+                            <path d="M4 8h40L24 22 4 8z" fill="#EA4335" fill-opacity="0.18"/>
+                        </svg>
+                    </div>
+                    <div class="contact-link-body">
+                        <span class="contact-link-label">Email</span>
+                        <span class="contact-link-value">furqnul@gmail.com</span>
+                    </div>
+                    <div class="contact-link-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/6287758641541" target="_blank" rel="noopener noreferrer" class="contact-link-card group magnetic-btn" data-platform="whatsapp" style="--brand-rgb:37,211,102;--brand-hex:#25D366">
+                    <div class="contact-icon-wrap" style="--brand-rgb:37,211,102;--brand-hex:#25D366">
+                        <!-- WhatsApp SVG logo -->
+                        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.4.633 4.65 1.74 6.601L2 30l7.6-1.718A13.93 13.93 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z" fill="#25D366" fill-opacity="0.18"/>
+                            <path d="M22.4 19.4c-.3-.15-1.77-.873-2.044-.972-.273-.1-.472-.15-.67.15-.2.298-.77.972-.944 1.17-.173.2-.347.224-.646.075-.3-.15-1.264-.466-2.408-1.485-.89-.793-1.49-1.773-1.664-2.073-.174-.3-.018-.462.13-.61.134-.134.3-.35.45-.523.148-.175.198-.3.298-.498.1-.2.05-.374-.025-.523-.075-.15-.67-1.62-.92-2.218-.24-.58-.487-.5-.67-.51h-.572c-.2 0-.522.075-.795.374-.273.3-1.04 1.017-1.04 2.48 0 1.463 1.065 2.877 1.213 3.076.15.2 2.095 3.2 5.077 4.487.71.307 1.263.49 1.694.628.712.226 1.36.194 1.872.117.571-.085 1.76-.72 2.01-1.415.248-.695.248-1.29.173-1.414-.074-.124-.273-.2-.572-.35z" fill="#25D366"/>
+                        </svg>
+                    </div>
+                    <div class="contact-link-body">
+                        <span class="contact-link-label">WhatsApp</span>
+                        <span class="contact-link-value">+62 877 5864 1541</span>
+                    </div>
+                    <div class="contact-link-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/ariel-furqanul-khaq-6b68a530b" target="_blank" rel="noopener noreferrer" class="contact-link-card group magnetic-btn" data-platform="linkedin" style="--brand-rgb:10,102,194;--brand-hex:#0A66C2">
+                    <div class="contact-icon-wrap" style="--brand-rgb:10,102,194;--brand-hex:#0A66C2">
+                        <!-- LinkedIn SVG logo -->
+                        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="6" fill="#0A66C2" fill-opacity="0.18"/>
+                            <path d="M8 13h3.5v11H8V13zM9.75 11.5A1.75 1.75 0 118 9.75 1.75 1.75 0 019.75 11.5z" fill="#0A66C2"/>
+                            <path d="M14 13h3.35v1.5h.05A3.67 3.67 0 0120.7 13c3.3 0 3.3 3 3.3 4.35V24H20.5v-5.9c0-1.4-.025-3.2-1.95-3.2s-2.25 1.52-2.25 3.1V24H14V13z" fill="#0A66C2"/>
+                        </svg>
+                    </div>
+                    <div class="contact-link-body">
+                        <span class="contact-link-label">LinkedIn</span>
+                        <span class="contact-link-value">Ariel Furqanul Khaq</span>
+                    </div>
+                    <div class="contact-link-arrow">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Copy-email hint -->
+            <p class="text-center text-xs text-gray-600 mt-8 font-mono reveal" id="copy-hint">klik email untuk menyalin · esc untuk menutup notifikasi</p>
+
+        </div>
+
+        <!-- Copied toast -->
+        <div id="copy-toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[300] pointer-events-none opacity-0 translate-y-3 transition-all duration-300">
+            <div class="flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full text-sm font-bold shadow-2xl">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Email disalin!
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-sm text-gray-600 border-t border-white/10">
+        &copy; 2026 ARIEL FURQANUL KHAQ.
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/6287758641541" target="_blank" rel="noopener noreferrer" aria-label="Chat via WhatsApp"
+       class="fixed bottom-8 right-8 z-50 bg-[#25D366] p-4 rounded-full shadow-lg hover:scale-110 transition-transform magnetic-btn">
+        <i class="fab fa-whatsapp text-2xl text-white" aria-hidden="true"></i>
+    </a>
+
+    <!-- ── PROJECT MODAL ── -->
+    <div id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative w-full max-w-3xl bg-[#0F0F0F] border border-white/10 rounded-2xl overflow-hidden transform scale-95 opacity-0 translate-y-4" id="modalContent">
+            <button onclick="closeModal()" aria-label="Tutup modal" class="absolute top-4 right-4 z-10 p-2 text-white hover:text-primary transition-colors">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="p-10">
+                <h2 id="modalTitle" class="text-3xl font-bold text-primary mb-4"></h2>
+                <div class="flex flex-wrap gap-2 mb-6" id="modalTechStack"></div>
+                <p id="modalDesc" class="text-gray-300 mb-8 leading-relaxed"></p>
+                <a id="modalRepo" href="#" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-block px-6 py-3 bg-white text-black rounded-full font-bold hover:bg-primary hover:text-white transition-all">Detail Proyek</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCRIPTS — ALL VANILLA JS, NO EXTRA CDN
+    ═══════════════════════════════════════════════════════════ -->
+    <script>
+    // ──────────────────────────────────────────────────────────────
+    // 1. PRELOADER
+    // ──────────────────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+        const pre = document.getElementById('preloader');
+        pre.style.opacity = '0';
+        setTimeout(() => {
+            pre.style.display = 'none';
+            // Trigger hero text reveal after preloader
+            initHeroReveal();
+            // Start GPA counter if in view
+            initGPACounter();
+        }, 500);
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // 2. CUSTOM CURSOR (RAF-based smooth follow)
+    // ──────────────────────────────────────────────────────────────
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        let mouseX = -100, mouseY = -100;
+        let outX = -100, outY = -100;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top  = mouseY + 'px';
+        });
+
+        window.addEventListener('mousedown', () => {
+            cursorDot.classList.add('clicking');
+            cursorOutline.classList.add('clicking');
+        });
+        window.addEventListener('mouseup', () => {
+            cursorDot.classList.remove('clicking');
+            cursorOutline.classList.remove('clicking');
+        });
+
+        (function rafLoop() {
+            outX += (mouseX - outX) * 0.13;
+            outY += (mouseY - outY) * 0.13;
+            cursorOutline.style.left = outX + 'px';
+            cursorOutline.style.top  = outY + 'px';
+            requestAnimationFrame(rafLoop);
+        })();
+
+        document.querySelectorAll('a, button, [onclick], .bento-card, .skill-tag').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hovered'));
+        });
+
+        document.querySelectorAll('.magnetic-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.classList.add('magnetic');
+                cursorOutline.classList.remove('hovered');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.classList.remove('magnetic');
+            });
+        });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 3. PARALLAX — mouse moves blobs in hero
+    // ──────────────────────────────────────────────────────────────
+    const parallaxBlobs = document.querySelectorAll('.parallax-blob');
+    let heroSection = document.getElementById('home');
+    let heroRect = heroSection ? heroSection.getBoundingClientRect() : null;
+
+    window.addEventListener('mousemove', (e) => {
+        // Only activate parallax when over hero section
+        if (!heroSection) return;
+        heroRect = heroSection.getBoundingClientRect();
+        if (e.clientY < heroRect.top || e.clientY > heroRect.bottom) return;
+
+        const cx = e.clientX - window.innerWidth / 2;
+        const cy = e.clientY - window.innerHeight / 2;
+
+        parallaxBlobs.forEach(blob => {
+            const sx = parseFloat(blob.dataset.speedX) || 0.04;
+            const sy = parseFloat(blob.dataset.speedY) || 0.03;
+            blob.style.transform = `translate(${cx * sx}px, ${cy * sy}px)`;
+        });
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // 4. 3D TILT on bento-card (mouse enter / move / leave)
+    // ──────────────────────────────────────────────────────────────
+    document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;   // 0..1
+            const y = (e.clientY - rect.top)  / rect.height;  // 0..1
+            const tiltX = (y - 0.5) * -14; // degrees
+            const tiltY = (x - 0.5) *  14;
+            card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.02)`;
+
+            // Spotlight gradient
+            card.style.setProperty('--mouse-x-local', `${x * 100}%`);
+            card.style.setProperty('--mouse-y-local', `${y * 100}%`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // 5. MAGNETIC BUTTONS — buttons attract to cursor
+    // ──────────────────────────────────────────────────────────────
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top  + rect.height / 2;
+            const dx = (e.clientX - cx) * 0.28;
+            const dy = (e.clientY - cy) * 0.28;
+            btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0px, 0px)';
+        });
+    });
+
+    // ──────────────────────────────────────────────────────────────
+    // 6. TEXT SCRAMBLE — scramble then settle to real text
+    // ──────────────────────────────────────────────────────────────
+    class TextScramble {
+        constructor(el) {
+            this.el = el;
+            this.chars = '!<>-_\\/[]{}—=+*^?#abcdefghijklmnopqrstuvwxyz';
+            this.update = this.update.bind(this);
+        }
+        setText(newText) {
+            const old = this.el.innerText;
+            const len = newText.length;
+            const promise = new Promise(res => this.resolve = res);
+            this.queue = [];
+            for (let i = 0; i < len; i++) {
+                const from = old[i] || '';
+                const to = newText[i];
+                const start = Math.floor(Math.random() * 20);
+                const end   = start + Math.floor(Math.random() * 20);
+                this.queue.push({ from, to, start, end });
+            }
+            cancelAnimationFrame(this.frameReq);
+            this.frame = 0;
+            this.update();
+            return promise;
+        }
+        update() {
+            let output = '';
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i];
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                        this.queue[i].char = char;
+                    }
+                    output += `<span class="text-primary/60">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+                this.resolve();
+            } else {
+                this.frameReq = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+    }
+
+    // Run scramble on subtitle once it enters viewport
+    const subtitleEl = document.getElementById('scramble-subtitle');
+    if (subtitleEl) {
+        const scrambler = new TextScramble(subtitleEl);
+        const originalText = subtitleEl.innerText;
+        let scrambled = false;
+        const subtitleObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !scrambled) {
+                scrambled = true;
+                // Scramble in: show gibberish then resolve to real text
+                subtitleEl.innerText = originalText; // ensure original first
+                setTimeout(() => scrambler.setText(originalText), 600);
+                subtitleObserver.disconnect();
+            }
+        }, { threshold: 0.5 });
+        subtitleObserver.observe(subtitleEl);
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 7. HERO TEXT REVEAL (translateY slide up on load)
+    // ──────────────────────────────────────────────────────────────
+    function initHeroReveal() {
+        const inners = document.querySelectorAll('.text-reveal-inner');
+        inners.forEach((el, i) => {
+            setTimeout(() => el.classList.add('revealed'), 80 + i * 60);
+        });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 8. GPA COUNTER — counts up from 0 to 3.16
+    // ──────────────────────────────────────────────────────────────
+    function initGPACounter() {
+        const gpaDisplay = document.getElementById('gpa-display');
+        const gpaBar = document.getElementById('gpa-bar');
+        const target = 3.16;
+        const targetPct = (target / 4.00) * 100;
+        let started = false;
+
+        const gpaObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting && !started) {
+                started = true;
+                // Animate number
+                const duration = 1600;
+                const start = performance.now();
+                function animateGPA(now) {
+                    const elapsed = now - start;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease out cubic
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = eased * target;
+                    gpaDisplay.textContent = current.toFixed(2);
+                    if (progress < 1) requestAnimationFrame(animateGPA);
+                    else gpaDisplay.textContent = target.toFixed(2);
+                }
+                requestAnimationFrame(animateGPA);
+                // Animate bar
+                setTimeout(() => { gpaBar.style.width = targetPct + '%'; }, 100);
+                gpaObserver.disconnect();
+            }
+        }, { threshold: 0.4 });
+
+        const gpaCard = document.getElementById('gpa-card');
+        if (gpaCard) gpaObserver.observe(gpaCard);
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 9. SCROLL REVEAL (IntersectionObserver)
+    // ──────────────────────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ──────────────────────────────────────────────────────────────
+    // 10. ACTIVE NAV HIGHLIGHT
+    // ──────────────────────────────────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                });
+            }
+        });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => navObserver.observe(s));
+
+    // ──────────────────────────────────────────────────────────────
+    // 11. PROJECT HOVER PREVIEW FLOATING IMAGE
+    // ──────────────────────────────────────────────────────────────
+    const preview = document.getElementById('project-preview');
+    const previewLabel = document.getElementById('preview-label');
+
+    if (preview) {
+        let previewX = 0, previewY = 0;
+        let targetPX = 0, targetPY = 0;
+        let previewRaf;
+
+        function lerpPreview() {
+            previewX += (targetPX - previewX) * 0.12;
+            previewY += (targetPY - previewY) * 0.12;
+            preview.style.left = previewX + 'px';
+            preview.style.top  = previewY + 'px';
+            previewRaf = requestAnimationFrame(lerpPreview);
+        }
+        lerpPreview();
+
+        window.addEventListener('mousemove', (e) => {
+            targetPX = e.clientX + 24;
+            targetPY = e.clientY - 80;
+        });
+
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const iconClass = card.dataset.icon || 'fa-chart-line';
+                const title = card.dataset.title || 'Project';
+                preview.querySelector('div').innerHTML = `<i class="fas ${iconClass}" style="font-size:2.5rem;color:#3B82F6;opacity:0.6;"></i>`;
+                previewLabel.textContent = title;
+                preview.classList.add('visible');
+            });
+            card.addEventListener('mouseleave', () => {
+                preview.classList.remove('visible');
+            });
+        });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 12. PROJECT MODAL
+    // ──────────────────────────────────────────────────────────────
+    const modal   = document.getElementById('projectModal');
+    const content = document.getElementById('modalContent');
+
+    function openModal(el) {
+        document.getElementById('modalTitle').innerText = el.getAttribute('data-title');
+        document.getElementById('modalDesc').innerText  = el.getAttribute('data-desc');
+        document.getElementById('modalRepo').href = el.getAttribute('data-repo') || '#';
+        const techCon = document.getElementById('modalTechStack');
+        techCon.innerHTML = '';
+        el.getAttribute('data-tech').split(', ').forEach(t => {
+            const s = document.createElement('span');
+            s.className = 'px-3 py-1 bg-white/10 rounded-full text-xs font-mono';
+            s.innerText = t;
+            techCon.appendChild(s);
+        });
+        modal.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            content.classList.remove('scale-95', 'opacity-0', 'translate-y-4');
+            content.classList.add('scale-100', 'opacity-100', 'translate-y-0');
+            content.style.transition = 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s ease';
+        });
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        content.classList.remove('scale-100', 'opacity-100', 'translate-y-0');
+        content.classList.add('scale-95', 'opacity-0', 'translate-y-4');
+        setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
+    }
+
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // ──────────────────────────────────────────────────────────────
+    // 13. COPY EMAIL on click + toast
+    // ──────────────────────────────────────────────────────────────
+    const emailLink = document.querySelector('[data-platform="email"]');
+    const toast = document.getElementById('copy-toast');
+    let toastTimer;
+
+    if (emailLink && toast) {
+        emailLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText('furqnul@gmail.com').then(() => {
+                toast.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toast.classList.remove('show');
+        });
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    // 14. NAV shrink on scroll
+    // ──────────────────────────────────────────────────────────────
+    const mainNav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        if (mainNav) mainNav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ──────────────────────────────────────────────────────────────
+    // 15. CONTACT CARDS staggered entrance
+    // ──────────────────────────────────────────────────────────────
+    const contactCards = document.querySelectorAll('.contact-link-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            contactCards.forEach((card, i) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 90);
+            });
+            cardObserver.disconnect();
+        }
+    }, { threshold: 0.2 });
+
+    contactCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(24px)';
+        card.style.transition = 'opacity 0.55s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), border-color 0.3s, background 0.3s, box-shadow 0.3s';
+    });
+    if (contactCards.length) cardObserver.observe(contactCards[0].closest('section') || contactCards[0]);
+    </script>
+</body>
+</html>
